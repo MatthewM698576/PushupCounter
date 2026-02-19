@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matthew // Pushup Counter</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 50px;
+        }
+        .container {
+            width: 400px;
+            background: #161b22;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #30363d;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        h1 { color: #58a6ff; text-align: center; font-size: 1.5rem; }
+        .stat-box {
+            background: #0d1117;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border-left: 4px solid #238636;
+        }
+        .label { font-size: 0.8rem; color: #8b949e; text-transform: uppercase; }
+        .value { font-size: 1.8rem; font-weight: bold; display: block; }
+        
+        /* Progress Bar Styles */
+        .percentage-bar {
+            height: 10px;
+            background: #30363d;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        .percentage-fill {
+            height: 100%;
+            width: 0%; /* Starts at 0, JS will update this */
+            background: linear-gradient(90deg, #58a6ff, #bc8cff);
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out; /* Makes the bar slide smoothly */
+        }
+        
+        /* The alignment fix you asked for */
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 0.85rem;
+            color: #8b949e;
+        }
+
+        .quote { font-style: italic; font-size: 0.9rem; color: #8b949e; text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>PUSHUP COUNTER</h1>
+    
+    <div class="stat-box">
+        <span class="label">Total Pushups (All-Time)</span>
+        <span class="value">85</span> 
+    </div>
+
+    <div class="stat-box" style="border-left-color: #0b8160;">
+        <span class="label">Daily Pushups (Count)</span>
+        <span class="value" id="current-count">10</span>
+    </div>
+
+    <div class="stat-box" style="border-left-color: #bc8cff;">
+        <span class="label">Daily Pushups Streak</span>
+        <span class="value">2 Days</span>
+    </div>
+
+    <div class="stat-box" style="border-left-color: #58a6ff;">
+        <span class="label">Daily Goal Progress</span>
+        <div class="percentage-bar">
+            <div class="percentage-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-labels">
+            <span id="start-val">0</span>
+            <span id="goal-val">50</span> </div>
+    </div>
+
+    <p class="quote">"Improving everyday!"</p>
+</div>
+
+<script>
+    // 1. Get the numbers from the HTML
+    const current = parseInt(document.getElementById('current-count').innerText);
+    const goal = parseInt(document.getElementById('goal-val').innerText);
+    
+    // 2. Calculate the percentage
+    // Formula: (Current / Goal) * 100
+    let percentage = (current / goal) * 100;
+    
+    // 3. Cap it at 100% so the bar doesn't break the container
+    if (percentage > 100) percentage = 100;
+
+    // 4. Update the width of the bar and the "0" label to show current progress
+    document.getElementById('progress-fill').style.width = percentage + "%";
+    document.getElementById('start-val').innerText = current;
+</script>
+
+</body>
+</html>
