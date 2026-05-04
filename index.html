@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,7 +31,6 @@
         .label { font-size: 0.8rem; color: #8b949e; text-transform: uppercase; }
         .value { font-size: 1.8rem; font-weight: bold; display: block; }
         
-        /* Progress Bar Styles */
         .percentage-bar {
             height: 10px;
             background: #30363d;
@@ -55,10 +54,10 @@
             color: #8b949e;
         }
 
-        /* Fixed Height for Quote to prevent jumping when loading */
         .quote-container {
             min-height: 60px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             margin-top: 20px;
@@ -85,6 +84,8 @@
     <div class="stat-box" style="border-left-color: #0b8160;">
         <span class="label">Daily Pushups (Count)</span>
         <span class="value" id="current-count">20</span>
+    </div> <!-- Fixed: Added missing closing div -->
+
     <div class="stat-box" style="border-left-color: #bc8cff;">
         <span class="label">Daily Pushups Streak</span>
         <span class="value">8 Day</span>
@@ -100,9 +101,11 @@
             <span id="goal-val">200</span> 
         </div>
     </div>
+
     <div class="stat-box" style="border-left-color: #a90e0e;">
         <span class="label">Debt</span>
-        <span class="value" id="current-count">0/100</span>
+        <!-- Fixed: Changed ID to avoid conflict with the daily count -->
+        <span class="value" id="debt-display">0/100</span>
     </div>
 
     <div class="quote-container">
@@ -111,7 +114,8 @@
 </div>
 
 <script>
-    const current = parseInt(document.getElementById('current-count').innerText);
+    const currentText = document.getElementById('current-count').innerText;
+    const current = parseInt(currentText);
     const goal = parseInt(document.getElementById('goal-val').innerText);
     
     let percentage = (current / goal) * 100;
@@ -122,7 +126,6 @@
         document.getElementById('start-val').innerText = current;
     }, 200);
 
-    // --- Reliability Update: High-Aura Local Quote Engine ---
     const auraQuotes = [
         { text: "May the God of hope fill you with all joy and peace as you trust in him, so that you may overflow with hope by the power of the Holy Spirit.", author: "Romans 15:13" },
         { text: "Trust in the Lord with all your heart, and do not lean on your own understanding. In all your ways acknowledge Him, and He will make your paths straight.", author: "Proverbs 3:5-6" },
@@ -133,7 +136,6 @@
 
     function loadLocalQuote() {
         const quoteEl = document.getElementById('quote-text');
-        // Selects a random quote from our local list
         const randomQuote = auraQuotes[Math.floor(Math.random() * auraQuotes.length)];
         quoteEl.innerHTML = `"${randomQuote.text}"<br><strong>— ${randomQuote.author}</strong>`;
     }
