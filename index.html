@@ -1,146 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <title>Matthew // Pushup Counter</title>
-    <style>
-        body {
-            background-color: #0d1117;
-            color: #c9d1d9;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            padding: 50px;
-        }
-        .container {
-            width: 400px;
-            background: #161b22;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #30363d;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        h1 { color: #58a6ff; text-align: center; font-size: 1.5rem; }
-        .stat-box {
-            background: #0d1117;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 6px;
-            border-left: 4px solid #238636;
-        }
-        .label { font-size: 0.8rem; color: #8b949e; text-transform: uppercase; }
-        .value { font-size: 1.8rem; font-weight: bold; display: block; }
-        
-        .percentage-bar {
-            height: 10px;
-            background: #30363d;
-            border-radius: 5px;
-            margin-top: 10px;
-            overflow: hidden;
-        }
-        .percentage-fill {
-            height: 100%;
-            width: 0%; 
-            background: linear-gradient(90deg, #58a6ff, #bc8cff);
-            border-radius: 5px;
-            transition: width 0.8s ease-in-out; 
-        }
-        
-        .progress-labels {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 5px;
-            font-size: 0.85rem;
-            color: #8b949e;
-        }
-
-        .quote-container {
-            min-height: 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .quote { 
-            font-style: italic; 
-            font-size: 0.9rem; 
-            color: #8b949e; 
-            text-align: center; 
-        }
-        strong { color: #58a6ff; font-weight: normal; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matthew // Pushup Counter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="app">
 
-<div class="container">
-    <h1>PUSHUP COUNTER</h1>
-    
-    <div class="stat-box">
-        <span class="label">Total Pushups (All Time)</span>
-        <span class="value">5980</span>
+    <header>
+      <div class="logo">
+        <div class="logo-icon">💪</div>
+        <span>Pushup Counter</span>
+      </div>
+      <div class="header-controls">
+        <button class="icon-btn" id="theme-toggle" title="Toggle theme">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="stat-card" style="--accent-color: #3B82F6;">
+      <div class="stat-label">Total Pushups — All Time</div>
+      <div class="stat-value" id="stat-total">—</div>
     </div>
 
-    <div class="stat-box" style="border-left-color: #0b8160;">
-        <span class="label">Daily Pushups (Count)</span>
-        <span class="value" id="current-count">80</span>
+    <div class="stat-card" style="--accent-color: #22C55E;">
+      <div class="stat-label">Daily Pushups</div>
+      <div class="stat-value" id="stat-today">—</div>
     </div>
 
-    <div class="stat-box" style="border-left-color: #bc8cff;">
-        <span class="label">Daily Pushups Streak</span>
-        <span class="value">9 Day</span>
+    <div class="stat-card" style="--accent-color: #A855F7;">
+      <div class="stat-label">Daily Pushups Streak</div>
+      <div class="stat-value" id="stat-streak">—<span class="stat-unit">Day</span></div>
     </div>
 
-    <div class="stat-box" style="border-left-color: #58a6ff;">
-        <span class="label">Daily Goal Progress</span>
-        <div class="percentage-bar">
-            <div class="percentage-fill" id="progress-fill"></div>
-        </div>
-        <div class="progress-labels">
-            <span id="start-val">0</span>
-            <span id="goal-val">200</span> 
-        </div>
+    <div class="progress-card">
+      <div class="progress-header">
+        <span class="progress-label">Daily Goal Progress</span>
+        <span class="progress-pct" id="progress-pct">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-range">
+        <span id="progress-range-start">0</span>
+        <span id="progress-range-end">200</span>
+      </div>
     </div>
 
-    <div class="stat-box" style="border-left-color: #a90e0e;">
-        <span class="label">Debt</span>
-        <span class="value" id="debt-display">0/100</span>
+    <div class="stat-card" style="--accent-color: #EF4444;">
+      <div class="stat-label">Debt</div>
+      <div class="stat-value" id="stat-debt">—</div>
     </div>
 
-    <div class="quote-container">
-        <p class="quote" id="quote-text">"Syncing motivation from the cloud..."</p>
+    <div class="quote-card">
+      <p class="quote-text" id="quote-text"></p>
+      <span class="quote-author" id="quote-author"></span>
     </div>
-</div>
 
-<script>
-    const currentText = document.getElementById('current-count').innerText;
-    const current = parseInt(currentText);
-    const goal = parseInt(document.getElementById('goal-val').innerText);
-    
-    let percentage = (current / goal) * 100;
-    if (percentage > 100) percentage = 100;
+  </div>
 
-    setTimeout(() => {
-        document.getElementById('progress-fill').style.width = percentage + "%";
-        document.getElementById('start-val').innerText = current;
-    }, 200);
-
-    const auraQuotes = [
-        { text: "May the God of hope fill you with all joy and peace as you trust in him, so that you may overflow with hope by the power of the Holy Spirit.", author: "Romans 15:13" },
-        { text: "Trust in the Lord with all your heart, and do not lean on your own understanding. In all your ways acknowledge Him, and He will make your paths straight.", author: "Proverbs 3:5-6" },
-        { text: "I have told you these things, so that in me you may have peace. In this world you will have trouble. But take heart! I have overcome the world.", author: "John 16:33" },
-        { text: "For I, the LORD your God, hold your right hand; it is I who say to you, 'Fear not, I am the one who helps you.'", author: "Isaiah 41:13" },
-        { text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.", author: "Isaiah 41:10" }
-    ];
-
-    function loadLocalQuote() {
-        const quoteEl = document.getElementById('quote-text');
-        const randomQuote = auraQuotes[Math.floor(Math.random() * auraQuotes.length)];
-        quoteEl.innerHTML = `"${randomQuote.text}"<br><strong>— ${randomQuote.author}</strong>`;
-    }
-
-    loadLocalQuote();
-</script>
-
+  <script src="app.js"></script>
 </body>
 </html>
