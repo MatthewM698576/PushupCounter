@@ -3,7 +3,7 @@ const DATA = {
   today: 0,
   streak: 9,
   goal: 200,
-  debt: 100,
+  debt: 50,
   debtMax: 100,
 };
 
