@@ -3,8 +3,6 @@ const DATA = {
   today: 0,
   streak: 12,
   goal: 200,
-  debt: 0,
-  debtMax: 100,
 };
 
 const quotes = [
