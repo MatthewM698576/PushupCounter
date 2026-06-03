@@ -17,7 +17,6 @@ function init() {
   document.getElementById('stat-total').textContent = DATA.total.toLocaleString();
   document.getElementById('stat-today').textContent = DATA.today;
   document.getElementById('stat-streak').textContent = DATA.streak;
-  document.getElementById('stat-debt').textContent = `${DATA.debt}/${DATA.debtMax}`;
 
   const pct = Math.min((DATA.today / DATA.goal) * 100, 100);
   document.getElementById('progress-range-start').textContent = DATA.today;
