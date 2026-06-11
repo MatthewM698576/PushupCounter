@@ -1,6 +1,6 @@
 const DATA = {
-  total: 10850,
-  today: 50,
+  total: 10880,
+  today: 80,
   streak: 20,
   goal: 200,
 };
