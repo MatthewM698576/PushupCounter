@@ -1,4 +1,4 @@
-xconst DATA = {
+const DATA = {
   total: 12130,
   today: 130,
   streak: 25,
