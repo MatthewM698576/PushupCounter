@@ -1,6 +1,6 @@
 xconst DATA = {
-  total: 12085,
-  today: 85,
+  total: 12130,
+  today: 130,
   streak: 25,
   goal: 200,
 };
