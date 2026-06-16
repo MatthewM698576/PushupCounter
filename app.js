@@ -1,6 +1,6 @@
-const DATA = {
-  total: 12000,
-  today: 0,
+xconst DATA = {
+  total: 12085,
+  today: 85,
   streak: 25,
   goal: 200,
 };
