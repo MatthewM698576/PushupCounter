@@ -1,8 +1,8 @@
 const DATA = {
-  total: 14260,
-  today: 60,
-  streak: 0,
-  goal: 200,
+  total: 14300,
+  today: 0,
+  streak: 1,
+  goal: 50,
 };
 
 const quotes = [
